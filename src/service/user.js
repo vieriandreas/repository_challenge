@@ -3,11 +3,22 @@ class UserService {
         this.UserRepository = UserRepository;
     }
 
-    async register(users) {
-        const newRegister = await this.UserRepository.insert(users);
-    
-        return newRegister;
-      }
+    async getAll() {
+        try {
+            const userList = await this.UserRepository.findAll()
+
+            return {
+                statusCode: 200,
+                users: userList
+            }
+        } catch (err) {
+
+            return {
+                statusCode: 500,
+                createdUser: null
+            }
+        }
+    }
 }
 
 module.exports = UserService;

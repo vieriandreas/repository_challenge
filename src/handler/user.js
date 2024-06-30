@@ -1,30 +1,18 @@
 class UserHandler {
-    constructor(UserService) {
-        this.UserService = UserService
+  constructor(UserService) {
+    this.UserService = UserService
 
-        this.register = this.register.bind(this);
-    }
+    this.getAll = this.getAll.bind(this);
+  }
 
-    
 
-    async register(req, res) {
-        const user = req.body
-        const newUser = await this.UserService.register(user);
-    
-        let statusCode = 201;
-        let respons = "created"
-    
-    
-        if (newUser === null) {
-          statusCode = 400;
-          respons = "gagal"
-        }
-    
-        res.status(statusCode).send({
-          msg: respons
-        })  
-      
-      }
+  async getAll(req, res) {
+    const serviceRes = await this.UserService.getAll()
+
+    res.status(serviceRes.statusCode).send({
+      users: serviceRes.users
+    })
+  }
 }
 
 module.exports = UserHandler;

@@ -1,17 +1,24 @@
-const {users} = require ('../../models');
+const { User } = require('../../models');
 
 class UserRepository {
-    constructor() { }
-  
+  constructor() { }
 
-async insert(user) {
-    const createdusers = await users.create({
+  async findAll() {
+    const userList = await User.findAll();
+
+    return userList;
+  }
+
+  async insert(user) {
+    const createdUser = await User.create({
       email: user.email,
       password: user.password
     });
 
-    return createdusers;
+    return createdUser;
   }
+
+  async getByEmail(email) { }
 }
 
 module.exports = UserRepository;
