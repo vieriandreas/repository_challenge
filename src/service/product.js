@@ -21,6 +21,23 @@ class ProductService {
         }
       }
     }
-  }
 
+    async insert(product) {
+        try {
+            const createdProduct = await this.ProductRepository.insert(product)
+            
+            return { statusCode: 201,
+                createdProduct: createdProduct
+            }
+        } catch (err) {
+            console.log(err)
+            return {
+                statusCode: 500,
+                createdPoduct: null
+
+            }
+        }
+    }
+       
+}
   module.exports = ProductService;

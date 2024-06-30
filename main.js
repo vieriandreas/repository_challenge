@@ -24,10 +24,6 @@ const authRepository = new AuthRepository()
 const authService = new AuthService(authRepository);
 const authHandler = new AuthHandler(authService);
 
-// Auth 
-app.post('/auth/login', authHandler.login);
-app.post('/auth/register', authHandler.register);
-
 const userService = new UserService(userRepository)
 const userHandler = new UserHandler(userService);
 
@@ -38,7 +34,10 @@ const productRepository = new ProductRepository();
 const productService = new ProductService(productRepository)
 const productHandler = new ProductHandler(productService);
 
-// Threads
+// Auth 
+app.post('/auth/login', authHandler.login);
+app.post('/auth/register', authHandler.register);
+app.post('/products', productHandler.insert);
 app.get('/products', productHandler.getAll);
 
 

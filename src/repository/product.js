@@ -1,48 +1,29 @@
-const { Users, Products, Orders } = require('../../models')
+const { Users, products, Orders } = require('../../models')
 
 class ProductRepository {
   constructor() { }
 
   async findAll() {
-    const productList = await Products.findAll(
-      {
-        attributes: [
-          'picture',
-          'variation',
-          'price',
-          'sold',
-          'name',
-          'shipping_cost',
-          'assessment',
-          'profile'
-        ],
-        include: [
-          {
-            model: Users,
-            required: true,
-            as: "user",
-            attributes: [
-              'email',
-              'password']
-          },
-          {
-            model: Orders,
-            required: true,
-            as: "order",
-            attributes: [
-              'addres',
-              'option',
-              'message',
-              'quantity',
-              'payment_method',
-              'payment_details',
-              'confirmation']
-          }
-        ]
-      }
+    const productList = await products.findAll(
+     
     );
 
     return productList;
+  }
+
+  async insert(product) {
+    const createdProduct = await products.create({
+      picture: product.picture,
+      variation: product.variation,
+      price: product.price,
+      sold: product.sold,
+      name: product.name,
+      shipping_cost: product.shipping_cost,
+      assessment: product.assessment,
+      profile: product.profile
+    });
+    console.log(createdProduct)
+    return createdProduct;
   }
 }
 
