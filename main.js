@@ -48,6 +48,7 @@ app.post('/products', productHandler.insert);
 app.get('/products', productHandler.getAll);
 app.post('/orders', orderHandler.create);
 app.get('/orders', orderHandler.getAll);
+app.post('/orders/:user_id', orderHandler.updateOrderStatus);
 
 app.use((req, res, next) => {
   res.status(404).send({

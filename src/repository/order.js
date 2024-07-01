@@ -27,6 +27,20 @@ class OrderRepository {
         console.log(createdOrder)
         return createdOrder;
     }
+
+    async orderStatus (payload, user_id) {
+        const updatedOrder = await orders.update(
+            {shipping_status: payload.shipping_status},
+            {
+                where: {
+                  user_id: user_id,
+                }
+              }
+        )
+
+        return updatedOrder
+    }
+
 }
 
 module.exports = OrderRepository

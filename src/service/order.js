@@ -39,6 +39,24 @@ class OrderService {
             }
         }
     }
+
+    async updateOrderStatus(payload, user_id) {
+        try {
+            const updateOrder = await this.OrderRepository.orderStatus(payload, user_id)
+
+            return {
+                statusCode: 201,
+                updatedOrder: updateOrder
+            }
+        } catch (err) {
+            console.log(err)
+            return {
+                statusCode: 500,
+                updatedOrder: null
+
+            }
+        }
+    }
 }
 
 module.exports = OrderService
