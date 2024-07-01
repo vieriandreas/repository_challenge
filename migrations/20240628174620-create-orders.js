@@ -1,4 +1,7 @@
 'use strict';
+
+const { sequelize } = require('../models');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -8,6 +11,17 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      user_id:
+      {
+        type: Sequelize.INTEGER,
+      },
+      product_id: {
+        type: Sequelize.INTEGER
+      },
+      shipping_status: {
+        type: Sequelize.STRING,
+        defaultValue: "PENDING"
       },
       addres: {
         type: Sequelize.STRING
@@ -41,6 +55,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Orders');
+    await queryInterface.dropTable('orders');
   }
 };

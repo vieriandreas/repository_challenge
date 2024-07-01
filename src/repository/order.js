@@ -13,6 +13,9 @@ class OrderRepository {
 
     async create(order) {
         const createdOrder = await orders.create({
+            user_id: order.user_id,
+            product_id: order.product_id,
+            shipping_status: order.shipping_status,
             addres: order.addres,
             option: order.option,
             message: order.message,
