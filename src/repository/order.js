@@ -12,7 +12,7 @@ class OrderRepository {
     }
 
     async create(order) {
-        const createdOrder = await orders.create(order)({
+        const createdOrder = await orders.create({
             addres: order.addres,
             option: order.option,
             message: order.message,
